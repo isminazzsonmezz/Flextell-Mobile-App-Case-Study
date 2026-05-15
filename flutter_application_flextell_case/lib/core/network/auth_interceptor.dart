@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_application_flextell_case/core/network/dio_client.dart';
 import 'package:flutter_application_flextell_case/core/storage/secure_storage_service.dart';
 import 'package:flutter_application_flextell_case/features/auth/data/services/refreshToken.dart';
 
@@ -42,7 +43,7 @@ class AuthInterceptor extends Interceptor {
 
         request.headers['Authorization'] = 'Bearer ${newToken.accessToken}';
 
-        final response = await Dio().fetch(request);
+        final response = await DioClient.dioIntance.fetch(request);
 
         return handler.resolve(response);
       }
